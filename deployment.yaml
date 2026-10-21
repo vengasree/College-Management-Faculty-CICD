@@ -14,5 +14,5 @@ spec:
     spec:
       containers:
         - name: faculty-cicd
-          image: faculty-cicd:latest
-          imagePullPolicy: IfNotPresent
+          image: vengasree/faculty-cicd:web-v2
+          imagePullPolicy: Always

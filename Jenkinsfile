@@ -12,6 +12,7 @@ pipeline {
             steps {
                 bat 'set "PATH=C:\\Users\\Gandla Vengasree\\Downloads\\apache-maven-3.9.16-bin\\apache-maven-3.9.16\\bin;%PATH%" && mvn clean package'
             }
+        
         }
 
         stage('Build Docker Image') {
