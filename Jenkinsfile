@@ -4,14 +4,13 @@ pipeline {
     stages {
         stage('Check Java and Maven') {
             steps {
-                bat 'java -version'
-                bat 'mvn -version'
+                bat 'set "PATH=C:\\Users\\Gandla Vengasree\\Downloads\\apache-maven-3.9.16-bin\\apache-maven-3.9.16\\bin;%PATH%" && mvn -version'
             }
         }
 
         stage('Build Java Application') {
             steps {
-                bat 'mvn clean package'
+                bat 'set "PATH=C:\\Users\\Gandla Vengasree\\Downloads\\apache-maven-3.9.16-bin\\apache-maven-3.9.16\\bin;%PATH%" && mvn clean package'
             }
         }
 
