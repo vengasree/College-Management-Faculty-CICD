@@ -1,14 +1,7 @@
-
 pipeline {
     agent any
 
     stages {
-        stage('Checkout Code') {
-            steps {
-                echo 'Source code is available in Jenkins workspace'
-            }
-        }
-
         stage('Check Java and Maven') {
             steps {
                 bat 'java -version'
@@ -28,9 +21,11 @@ pipeline {
             }
         }
 
-        stage('Run Docker Container') {
+        stage('Deploy to Kubernetes') {
             steps {
-                bat 'docker run --rm faculty-cicd:latest'
+                bat 'kubectl apply -f deployment.yaml'
+                bat 'kubectl apply -f service.yaml'
+                bat 'kubectl rollout status deployment/faculty-cicd --timeout=120s'
             }
         }
     }
@@ -39,9 +34,8 @@ pipeline {
         success {
             echo 'Faculty CI/CD pipeline completed successfully!'
         }
-
         failure {
-            echo 'Pipeline failed. Please check the Console Output.'
+            echo 'Pipeline failed. Check the Jenkins console output.'
         }
     }
 }
